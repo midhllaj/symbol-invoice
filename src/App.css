@@ -1,0 +1,240 @@
+/* Invoice Preview Styles (A4 Size) */
+.invoice-preview-container {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  padding: 10mm;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  position: relative;
+  font-family: 'Arial', sans-serif;
+  /* Ensure font is set */
+  font-size: 12px;
+  line-height: 1.4;
+  color: black;
+  /* Ensure text color */
+  letter-spacing: 0.5px;
+  /* Prevent text merging in PDF */
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure headings have styles in the preview since Tailwind resets them */
+.invoice-preview-container h1,
+.invoice-preview-container h2,
+.invoice-preview-container h3 {
+  font-weight: bold;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.quotation-title {
+  font-family: 'Bookman Old Style', serif;
+  font-size: 24px;
+  color: #e31e24;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-color: #e31e24;
+  margin-top: 20px;
+}
+
+.company-logo {
+  text-align: right;
+}
+
+.symbol-text {
+  font-size: 36px;
+  font-weight: 900;
+  color: #666;
+  line-height: 1;
+}
+
+.symbol-text span {
+  color: #e31e24;
+}
+
+.advertising-text {
+  background: #e31e24;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 5px;
+  letter-spacing: 2px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: 80px 1fr 60px 1fr;
+  border: 1px solid #999;
+  margin-bottom: 20px;
+}
+
+.header-cell {
+  padding: 4px 8px;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+  min-height: 20px;
+}
+
+.header-cell.label {
+  font-weight: bold;
+  color: #333;
+}
+
+.header-cell:last-child {
+  border-right: none;
+}
+
+/* Invoice Table */
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border: 1px solid #999;
+}
+
+.invoice-table th {
+  background-color: #e0e0e0;
+  border: 1px solid #999;
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.invoice-table td {
+  border-right: 1px solid #999;
+  padding: 8px;
+  vertical-align: top;
+}
+
+.invoice-table td:last-child {
+  border-right: none;
+}
+
+/* Column widths */
+.col-sl {
+  width: 40px;
+  text-align: center;
+}
+
+.col-desc {
+  text-align: left;
+}
+
+.col-qty {
+  width: 60px;
+  text-align: center;
+}
+
+.col-price {
+  width: 80px;
+  text-align: center;
+}
+
+.col-amount {
+  width: 80px;
+  text-align: center;
+}
+
+/* Totals Section */
+.totals-section {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: -21px;
+  /* Overlap with table bottom border */
+}
+
+.totals-row td {
+  padding: 5px 8px;
+  border: 1px solid #999;
+}
+
+.totals-label {
+  text-align: right;
+  font-weight: bold;
+  background-color: #e0e0e0;
+}
+
+.totals-value {
+  text-align: center;
+  width: 80px;
+  font-weight: bold;
+}
+
+.amount-words {
+  border: 1px solid #999;
+  padding: 5px 8px;
+  font-weight: bold;
+  margin-top: 10px;
+  background-color: #f9f9f9;
+}
+
+.payment-terms {
+  margin-top: 10px;
+  border: 1px dotted #999;
+  padding: 10px;
+  font-size: 11px;
+}
+
+.footer-section {
+  margin-top: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signature-box {
+  text-align: center;
+  padding: 10px;
+  width: 200px;
+}
+
+.signature-box p {
+  margin: 2px 0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.email-footer {
+  margin-top: 2px;
+  font-style: italic;
+  padding: 2px 5px;
+  display: inline-block;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 3mm;
+  right: 10mm;
+  border: 1px dotted #999;
+  padding: 2px 5px;
+  color: #e31e24;
+}
+
+.bottom-bar {
+  position: absolute;
+  bottom: 8mm;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background-color: #5d4037;
+}
+
+.bottom-logo {
+  position: absolute;
+  bottom: 3mm;
+  left: 10mm;
+  border: 1px dotted #999;
+  padding: 2px 5px;
+  color: #e31e24;
+  font-weight: bold;
+}
