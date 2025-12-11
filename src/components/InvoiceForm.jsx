@@ -50,7 +50,7 @@ const InvoiceForm = ({ data, onChange, onAddItem, onRemoveItem, onPreview, onDow
                         <CardTitle>Invoice Details</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <Label htmlFor="quoteNo">Quote No</Label>
                                 <Input
@@ -94,7 +94,7 @@ const InvoiceForm = ({ data, onChange, onAddItem, onRemoveItem, onPreview, onDow
                                 onChange={(e) => onChange('company', e.target.value)}
                             />
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <Label htmlFor="trn">TRN No</Label>
                                 <Input
@@ -132,52 +132,58 @@ const InvoiceForm = ({ data, onChange, onAddItem, onRemoveItem, onPreview, onDow
                     </Button>
                 </CardHeader>
                 <CardContent>
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                         {data.items.map((item, index) => (
-                            <div key={index} className="flex gap-4 items-start">
-                                <div className="flex-1 space-y-2">
-                                    {index === 0 && <Label>Description</Label>}
+                            <div key={index} className="flex flex-col md:flex-row gap-4 items-start border-b md:border-b-0 pb-4 md:pb-0 last:border-0">
+                                <div className="flex-1 space-y-2 w-full">
+                                    <Label className="md:hidden">Description</Label>
+                                    {index === 0 && <Label className="hidden md:block">Description</Label>}
                                     <Input
                                         placeholder="Description"
                                         value={item.description}
                                         onChange={(e) => handleItemChange(index, 'description', e.target.value)}
                                     />
                                 </div>
-                                <div className="w-24 space-y-2">
-                                    {index === 0 && <Label>Qty</Label>}
-                                    <Input
-                                        type="number"
-                                        placeholder="Qty"
-                                        value={item.quantity}
-                                        onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
-                                    />
-                                </div>
-                                <div className="w-32 space-y-2">
-                                    {index === 0 && <Label>Price</Label>}
-                                    <Input
-                                        type="number"
-                                        placeholder="Price"
-                                        value={item.unitPrice}
-                                        onChange={(e) => handleItemChange(index, 'unitPrice', e.target.value)}
-                                    />
-                                </div>
-                                <div className="w-32 space-y-2">
-                                    {index === 0 && <Label>Amount</Label>}
-                                    <Input
-                                        value={item.amount}
-                                        readOnly
-                                        className="bg-muted"
-                                    />
-                                </div>
-                                <div className={index === 0 ? "pt-8" : ""}>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        className="text-destructive hover:text-destructive/90 hover:bg-destructive/10"
-                                        onClick={() => onRemoveItem(index)}
-                                    >
-                                        <Trash2 className="h-4 w-4" />
-                                    </Button>
+                                <div className="flex gap-2 w-full md:w-auto">
+                                    <div className="w-20 md:w-24 space-y-2">
+                                        <Label className="md:hidden">Qty</Label>
+                                        {index === 0 && <Label className="hidden md:block">Qty</Label>}
+                                        <Input
+                                            type="number"
+                                            placeholder="Qty"
+                                            value={item.quantity}
+                                            onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="flex-1 md:w-32 space-y-2">
+                                        <Label className="md:hidden">Price</Label>
+                                        {index === 0 && <Label className="hidden md:block">Price</Label>}
+                                        <Input
+                                            type="number"
+                                            placeholder="Price"
+                                            value={item.unitPrice}
+                                            onChange={(e) => handleItemChange(index, 'unitPrice', e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="flex-1 md:w-32 space-y-2">
+                                        <Label className="md:hidden">Amount</Label>
+                                        {index === 0 && <Label className="hidden md:block">Amount</Label>}
+                                        <Input
+                                            value={item.amount}
+                                            readOnly
+                                            className="bg-muted"
+                                        />
+                                    </div>
+                                    <div className={`pt-8 md:pt-0 ${index === 0 ? "md:pt-8" : ""}`}>
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            className="text-destructive hover:text-destructive/90 hover:bg-destructive/10"
+                                            onClick={() => onRemoveItem(index)}
+                                        >
+                                            <Trash2 className="h-4 w-4" />
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         ))}
