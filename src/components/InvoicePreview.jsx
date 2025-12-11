@@ -31,7 +31,7 @@ const InvoicePreview = forwardRef(({ data, documentType = 'quotation' }, ref) =>
             <div className="invoice-header">
                 <div className="quotation-title">{documentTitle}</div>
                 <div className="company-logo">
-                    <img src="/symbol-logo.png" alt="Symbol Advertising" style={{ width: '180px', height: 'auto' }} />
+                    <img src="/symbol-logo.png" alt="Symbol Advertising" style={{ width: '180px', height: 'auto', imageRendering: 'crisp-edges' }} />
                 </div>
             </div>
 

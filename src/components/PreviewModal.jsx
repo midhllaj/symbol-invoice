@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
 import InvoicePreview from './InvoicePreview';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 import { Button } from "@/components/ui/button";
 import { X, Download } from "lucide-react";
 
@@ -28,36 +26,8 @@ const PreviewModal = ({ data, documentType, onClose }) => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const handleDownload = async () => {
-        const element = previewRef.current;
-
-        // Create canvas from the element with improved settings
-        const canvas = await html2canvas(element, {
-            scale: 4, // Higher scale for better quality
-            useCORS: true,
-            logging: false,
-            allowTaint: true,
-            backgroundColor: '#ffffff',
-            imageTimeout: 0,
-            onclone: (document) => {
-                const element = document.getElementById('invoice-preview');
-                if (element) {
-                    element.style.letterSpacing = '0.5px'; // Ensure letter spacing is applied in clone
-                }
-            }
-        });
-
-        const imgData = canvas.toDataURL('image/png', 1.0);
-
-        // A4 dimensions in mm
-        const pdfWidth = 210;
-        const pdfHeight = 297;
-
-        const pdf = new jsPDF('p', 'mm', 'a4', true);
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
-
-        const fileName = documentType === 'invoice' ? 'Invoice' : 'Quotation';
-        pdf.save(`${fileName}_${data.quoteNo || 'Draft'}.pdf`);
+    const handleDownload = () => {
+        window.print();
     };
 
     const title = documentType === 'invoice' ? 'Invoice Preview' : 'Quotation Preview';
