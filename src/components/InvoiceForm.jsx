@@ -24,10 +24,13 @@ const InvoiceForm = ({ data, onChange, onAddItem, onRemoveItem, onPreview, onDow
 
     return (
         <div className="space-y-6 p-1">
-            <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold tracking-tight">Invoice Generator</h2>
-                <div className="flex gap-2 items-center">
-                    <div className="flex items-center space-x-2 mr-4">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div className="flex justify-between items-center w-full md:w-auto">
+                    <h2 className="text-2xl font-bold tracking-tight">Invoice Generator</h2>
+                    <img src="/header-logo.png" alt="Symbol Advertising" className="h-12 md:hidden object-contain" />
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                    <div className="flex items-center space-x-2">
                         <Switch
                             id="vat-mode"
                             checked={data.vatEnabled}
@@ -35,12 +38,14 @@ const InvoiceForm = ({ data, onChange, onAddItem, onRemoveItem, onPreview, onDow
                         />
                         <Label htmlFor="vat-mode">VAT: ON / OFF</Label>
                     </div>
-                    <Button variant="outline" onClick={onPreview}>
-                        <FileText className="mr-2 h-4 w-4" /> Preview
-                    </Button>
-                    <Button onClick={onDownload}>
-                        <Download className="mr-2 h-4 w-4" /> Download
-                    </Button>
+                    <div className="flex gap-2 w-full sm:w-auto">
+                        <Button variant="outline" onClick={onPreview} className="flex-1 sm:flex-none">
+                            <FileText className="mr-2 h-4 w-4" /> Preview
+                        </Button>
+                        <Button onClick={onDownload} className="flex-1 sm:flex-none">
+                            <Download className="mr-2 h-4 w-4" /> Download
+                        </Button>
+                    </div>
                 </div>
             </div>
 
